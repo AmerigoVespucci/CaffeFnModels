@@ -1,4 +1,4 @@
-name: "WordToPos"
+name: "WordAndPosValid"
 iterate_type: ITERATE_WORD
 data_src: DATA_SRC_BOOKS
 data_fields {
