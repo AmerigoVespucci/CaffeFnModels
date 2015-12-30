@@ -8,11 +8,11 @@ data_fields {
 data_translates {
 	translate_type: DATA_TRANSLATE_WID_TO_DID
 	var_name: "DepRec1"
-	match_name: "Word1"
+	match_name: "WordRec"
 }
 data_translates {
 	translate_type: DATA_TRANSLATE_DID_TO_DEP_WID
-	var_name: "DepDep1" # use this to access coref
+	var_name: "DepWID1" # use this to access coref
 	match_name: "DepRec1"
 }
 data_translates {
@@ -38,13 +38,13 @@ data_translates {
 }
 data_translates {
 	translate_type: DATA_TRANSLATE_WID_TO_DID
-	var_name: "PrevDepType1"  # use this to filter
-	match_name: "PrevDepRec1"
+	var_name: "PrevDepRec1" 
+	match_name: "Coref1"
 }
 data_translates {
 	translate_type: DATA_TRANSLATE_DID_TO_DEP_NAME
-	var_name: "DepType1" # use this to filter
-	match_name: "DepRec1"
+	var_name: "PrevDepType1" # use this to filter
+	match_name: "PrevDepRec1"
 }
 data_translates {
 	translate_type: DATA_TRANSLATE_DID_TO_GOV_WID
