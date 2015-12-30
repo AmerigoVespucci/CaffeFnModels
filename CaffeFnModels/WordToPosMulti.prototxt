@@ -18,7 +18,7 @@ output_field_translates {
   var_name: "Pos1"
   table_name: "POSVecTbl" # PosNum and not vec which means the output is a single integer
 }
-files_core_dir: "/devlink/caffe/data/NetGen/WordToPos/"
+files_core_dir: "/devlink/caffe/data/NetGen/WordToPosMulti/"
 test_list_file_name: "data/test_list.txt"
 train_list_file_name: "data/train_list.txt"
 net_end_type: END_MULTI_HOT # test multi hot even though this isn't really

@@ -1,0 +1,62 @@
+name: "DObjValid"
+iterate_type: ITERATE_DEP
+data_src: DATA_SRC_BOOKS
+data_fields {
+	var_name: "DepType1"
+	field_name: "DepType"
+}
+data_fields {
+	var_name: "Gov1"
+	field_name: "RecAndGov"
+}
+data_fields {
+	var_name: "Dep1"
+	field_name: "RecAndDep"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DEP_TO_WORD
+	var_name: "Word1"
+	iter_type: "word"
+	match_name: "Gov1"
+	match_field_name: "index"
+	field_name: "Word"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DEP_TO_WORD
+	var_name: "Word2"
+	iter_type: "word"
+	match_name: "Dep1"
+	match_field_name: "index"
+	field_name: "Word"
+}
+data_filters {
+	var_name: "DepType1"
+	match_string: "1"
+}
+input_field_translates {
+  var_name: "DepType1"
+  table_name: "DepVecTbl"
+}
+input_field_translates {
+  var_name: "Word1"
+  table_name: "WordVecTbl"
+}
+input_field_translates {
+  var_name: "Word2"
+  table_name: "WordVecTbl"
+  b_can_replace: true 
+}
+output_field_translates {
+  table_name: "YesNoTbl"
+}
+files_core_dir: "/devlink/caffe/data/NetGen/DObjValid/"
+test_list_file_name: "data/test_list.txt"
+train_list_file_name: "data/train_list.txt"
+net_end_type: END_VALID # must be so if YesNoTbl is the only output
+proto_file_name: "models/train.prototxt" # name passed on to caffe to produce file
+model_file_name: "models/g_best.caffemodel"
+config_file_name: "data/config.prototxt"
+num_accuracy_candidates: 1
+glove_vec_file_name: "/ExtDownloads/glove.6B.50d.txt"
+
+	

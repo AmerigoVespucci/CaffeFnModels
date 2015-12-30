@@ -1,0 +1,90 @@
+name: "CorefNSubj"
+iterate_type: ITERATE_WORD
+data_src: DATA_SRC_BOOKS
+data_fields {
+  var_name: "WordRec"
+  field_name: "WID"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_WID_TO_DID
+	var_name: "DepRec1"
+	match_name: "WordRec"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DID_TO_DEP_WID
+	var_name: "DepDep1" # use this to access coref
+	match_name: "DepRec1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DID_TO_GOV_WID
+	var_name: "DepGov1" # used for data output 1 to the nn - needs translation to word
+	match_name: "DepRec1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_WID_TO_WORD
+	var_name: "Word1"
+	match_name: "DepGov1" # output translated to vec and used as input to nn
+	field_name: "Word"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DID_TO_DEP_NAME
+	var_name: "DepType1" # use this to filter
+	match_name: "DepRec1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_WID_TO_COREF # produces a WordRecAndID
+	var_name: "Coref1"
+	match_name: "DepDep1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_WID_TO_DID
+	var_name: "PrevDepType1"  # use this to filter
+	match_name: "PrevDepRec1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DID_TO_DEP_NAME
+	var_name: "DepType1" # use this to filter
+	match_name: "DepRec1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_DID_TO_GOV_WID
+	var_name: "PrevDepGov1" # used for data output 2 to the nn - needs translation to word
+	match_name: "PrevDepRec1"
+}
+data_translates {
+	translate_type: DATA_TRANSLATE_WID_TO_WORD
+	var_name: "Word2"
+	match_name: "PrevDepGov1" # output translated to vec and used as input to nn
+	field_name: "Word"
+}
+data_filters {
+	var_name: "DepType1"
+	match_string: "nsubj:d" 
+}
+data_filters {
+	var_name: "PrevDepType1"
+	match_string: "nsubj:d" 
+}
+input_field_translates {
+  var_name: "Word1"
+  table_name: "WordVecTbl"
+}
+input_field_translates {
+  var_name: "Word2"
+  table_name: "WordVecTbl"
+  b_can_replace: true 
+}
+output_field_translates {
+  table_name: "YesNoTbl"
+}
+files_core_dir: "/devlink/caffe/data/NetGen/CorefNSubj/"
+test_list_file_name: "data/test_list.txt"
+train_list_file_name: "data/train_list.txt"
+net_end_type: END_VALID # must be so if YesNoTbl is the only output
+proto_file_name: "models/train.prototxt" # name passed on to caffe to produce file
+model_file_name: "models/g_best.caffemodel"
+config_file_name: "data/config.prototxt"
+num_accuracy_candidates: 1
+glove_vec_file_name: "/ExtDownloads/glove.6B.50d.txt"
+
+	
