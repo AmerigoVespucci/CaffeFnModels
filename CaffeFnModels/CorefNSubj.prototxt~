@@ -34,7 +34,7 @@ data_translates {
 data_translates {
 	translate_type: DATA_TRANSLATE_WID_TO_COREF # produces a WordRecAndID
 	var_name: "Coref1"
-	match_name: "DepDep1"
+	match_name: "DepRec1"
 }
 data_translates {
 	translate_type: DATA_TRANSLATE_WID_TO_DID

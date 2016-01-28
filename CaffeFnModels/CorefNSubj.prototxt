@@ -81,7 +81,7 @@ files_core_dir: "/devlink/caffe/data/NetGen/CorefNSubj/"
 test_list_file_name: "data/test_list.txt"
 train_list_file_name: "data/train_list.txt"
 net_end_type: END_VALID # must be so if YesNoTbl is the only output
-proto_file_name: "models/train.prototxt" # name passed on to caffe to produce file
+proto_file_name: "models/train.prototxt" # name passed on to caffe to produce file 
 model_file_name: "models/g_best.caffemodel"
 config_file_name: "data/config.prototxt"
 num_accuracy_candidates: 1
